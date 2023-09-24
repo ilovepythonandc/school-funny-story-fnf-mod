@@ -1,0 +1,34 @@
+{
+	"animations": [
+		{
+			"offsets": [
+				-40,
+				-223
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "idle",
+			"indices": [],
+			"name": "idle"
+		}
+	],
+	"no_antialiasing": true,
+	"image": "characters/maxphone-gf",
+	"position": [
+		0,
+		0
+	],
+	"healthicon": "null",
+	"flip_x": false,
+	"healthbar_colors": [
+		0,
+		0,
+		0
+	],
+	"camera_position": [
+		0,
+		0
+	],
+	"sing_duration": 4,
+	"scale": 1.2
+}

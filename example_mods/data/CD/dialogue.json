@@ -1,0 +1,100 @@
+{
+	"dialogue": [
+		{
+			"expression": "confused",
+			"text": "Where am I?",
+			"boxState": "normal",
+			"portrait": "bf",
+			"speed": 0.05,
+			"sound": "bf_talk"
+		},
+		{
+			"expression": "pissed",
+			"text": "HEY!\\nWho are you!!\\nWhy are you in my CD room!!!",
+			"boxState": "normal",
+			"portrait": "me",
+			"speed": 0.035,
+			"sound": "me_talk"
+		},
+		{
+			"expression": "shocked",
+			"text": "OH YEAH GUYS ,I I I I Y EA,NO,OH FUCK OH NO,YEA OH I ,DO ,NO. OH HELL,NO NOT ME LETTTTT OHHHH YEA IT IT IT YES! NO FUCK NO!!!",
+			"boxState": "angry",
+			"portrait": "bf",
+			"speed": 0.005,
+			"sound": "bf_talk"
+		},
+		{
+			"expression": "confused",
+			"text": "Hey,guy\\ncalm down.",
+			"boxState": "normal",
+			"portrait": "me",
+			"speed": 0.03,
+			"sound": "me_talk"
+		},
+		{
+			"expression": "talk",
+			"text": "Oh,yeah maybe I need to calm down first.",
+			"boxState": "normal",
+			"sound": "BF_talk",
+			"speed": 0.05,
+			"portrait": "bf"
+		},
+		{
+			"expression": "talk",
+			"text": "Did you just say I am in your CD-room?",
+			"boxState": "normal",
+			"sound": "bf_talk",
+			"speed": 0.05,
+			"portrait": "bf"
+		},
+		{
+			"expression": "talk",
+			"text": "Yes.\\nNow you are in my CD-room.",
+			"boxState": "normal",
+			"sound": "me_talk",
+			"speed": 0.05,
+			"portrait": "me"
+		},
+		{
+			"expression": "talk",
+			"text": "How did you get the key?",
+			"boxState": "normal",
+			"sound": "me_talk",
+			"speed": 0.05,
+			"portrait": "me"
+		},
+		{
+			"expression": "talk",
+			"text": "I don't know,I was playing with my girlfriend and I fell in a big hole and then I woke up here.",
+			"boxState": "normal",
+			"sound": "bf_talk",
+			"speed": 0.05,
+			"portrait": "bf"
+		},
+		{
+			"expression": "excited",
+			"text": "........",
+			"boxState": "normal",
+			"sound": "me_talk",
+			"speed": 0.5,
+			"portrait": "me"
+		},
+		{
+			"expression": "pissed",
+			"text": "Hey guy,do you want a rap battle with me?",
+			"boxState": "normal",
+			"sound": "bf_talk",
+			"speed": 0.05,
+			"portrait": "bf"
+		},
+		{
+			"expression": "excited",
+			"text": "Sure!",
+			"boxState": "normal",
+			"sound": "me_talk",
+			"speed": 0.05,
+			"portrait": "me"
+		}
+	]
+}

@@ -1,0 +1,36 @@
+{
+	"dialogue": [
+		{
+			"expression": "excited",
+			"text": "What a funny day!\\nOh!It's night!\\nlook at the stars!They're flashing!",
+			"boxState": "normal",
+			"sound": "me_talk",
+			"speed": 0.075,
+			"portrait": "me"
+		},
+		{
+			"expression": "talk",
+			"text": "Yes,they are.",
+			"boxState": "normal",
+			"sound": "bf_talk",
+			"speed": 0.035,
+			"portrait": "bf"
+		},
+		{
+			"expression": "talk",
+			"text": "Uh huh.",
+			"boxState": "normal",
+			"sound": "gf_talk",
+			"speed": 0.05,
+			"portrait": "gf"
+		},
+		{
+			"expression": "excited",
+			"text": "I have song It's about the stars\\nhere let's do it!",
+			"boxState": "normal",
+			"sound": "me_talk",
+			"speed": 0.05,
+			"portrait": "me"
+		}
+	]
+}

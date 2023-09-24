@@ -1,0 +1,122 @@
+{
+	"animations": [
+		{
+			"loop": false,
+			"offsets": [
+				9,
+				-269
+			],
+			"anim": "idle",
+			"fps": 24,
+			"name": "idle",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				66,
+				-278
+			],
+			"anim": "singUP",
+			"fps": 24,
+			"name": "idle",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				66,
+				-278
+			],
+			"anim": "singDOWN",
+			"fps": 24,
+			"name": "idle",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				66,
+				-278
+			],
+			"anim": "singLEFT",
+			"fps": 24,
+			"name": "idle",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				66,
+				-278
+			],
+			"anim": "singRIGHT",
+			"fps": 24,
+			"name": "idle",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				66,
+				-278
+			],
+			"anim": "singUPmiss",
+			"fps": 24,
+			"name": "idle",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				66,
+				-278
+			],
+			"anim": "singDOWNmiss",
+			"fps": 24,
+			"name": "idle",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				66,
+				-278
+			],
+			"anim": "singLEFTmiss",
+			"fps": 24,
+			"name": "idle",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				66,
+				-278
+			],
+			"anim": "singRIGHTmiss",
+			"fps": 24,
+			"name": "idle",
+			"indices": []
+		}
+	],
+	"no_antialiasing": true,
+	"image": "characters/null",
+	"position": [
+		-50,
+		-471
+	],
+	"healthicon": "null",
+	"flip_x": true,
+	"healthbar_colors": [
+		0,
+		0,
+		0
+	],
+	"camera_position": [
+		0,
+		250
+	],
+	"sing_duration": 4,
+	"scale": 3.5
+}

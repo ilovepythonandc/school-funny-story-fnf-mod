@@ -1,0 +1,7 @@
+{
+	"name": "a school day",
+	"description": "nope",
+	"restart":true,
+	"runsGlobally": false,
+	"color": [0, 204, 255]
+}

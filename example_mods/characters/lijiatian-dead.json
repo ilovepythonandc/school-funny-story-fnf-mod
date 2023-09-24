@@ -1,0 +1,56 @@
+{
+	"animations": [
+		{
+			"loop": false,
+			"offsets": [
+				763,
+				361
+			],
+			"anim": "firstDeath",
+			"fps": 24,
+			"name": "firstdeath",
+			"indices": []
+		},
+		{
+			"offsets": [
+				763,
+				-247
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "deathLoop",
+			"indices": [],
+			"name": "deathloop"
+		},
+		{
+			"loop": false,
+			"offsets": [
+				676,
+				304
+			],
+			"anim": "deathConfirm",
+			"fps": 24,
+			"name": "deathend",
+			"indices": []
+		}
+	],
+	"no_antialiasing": true,
+	"image": "characters/lijiatian",
+	"position": [
+		570,
+		390
+	],
+	"healthicon": "Lijiatian",
+	"flip_x": false,
+	"healthbar_colors": [
+		180,
+		239,
+		233
+	],
+	"camera_position": [
+		710,
+		-490
+	],
+	"sing_duration": 4,
+	"scale": 1.45
+}

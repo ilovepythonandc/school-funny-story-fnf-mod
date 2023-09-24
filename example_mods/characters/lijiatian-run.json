@@ -1,0 +1,197 @@
+{
+	"animations": [
+		{
+			"loop": false,
+			"offsets": [
+				1053,
+				385
+			],
+			"anim": "idle",
+			"fps": 60,
+			"name": "idle",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				1048,
+				391
+			],
+			"anim": "singUP",
+			"fps": 60,
+			"name": "up",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				1027,
+				423
+			],
+			"anim": "singLEFT",
+			"fps": 60,
+			"name": "left",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				1045,
+				379
+			],
+			"anim": "singDOWN",
+			"fps": 60,
+			"name": "down",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				1084,
+				383
+			],
+			"anim": "singRIGHT",
+			"fps": 60,
+			"name": "right",
+			"indices": []
+		},
+		{
+			"offsets": [
+				1044,
+				370
+			],
+			"loop": false,
+			"fps": 60,
+			"anim": "singUPmiss",
+			"indices": [],
+			"name": "missup"
+		},
+		{
+			"offsets": [
+				1003,
+				380
+			],
+			"loop": false,
+			"fps": 60,
+			"anim": "singDOWNmiss",
+			"indices": [],
+			"name": "missdown"
+		},
+		{
+			"offsets": [
+				1020,
+				377
+			],
+			"loop": false,
+			"fps": 60,
+			"anim": "singLEFTmiss",
+			"indices": [],
+			"name": "missleft"
+		},
+		{
+			"offsets": [
+				1019,
+				381
+			],
+			"loop": false,
+			"fps": 60,
+			"anim": "singRIGHTmiss",
+			"indices": [],
+			"name": "missright"
+		},
+		{
+			"offsets": [
+				1048,
+				382
+			],
+			"loop": true,
+			"fps": 60,
+			"anim": "idle-loop",
+			"indices": [
+				12,
+				13,
+				14
+			],
+			"name": "idle"
+		},
+		{
+			"offsets": [
+				1050,
+				393
+			],
+			"loop": true,
+			"fps": 60,
+			"anim": "singUP-loop",
+			"indices": [
+				12,
+				13,
+				14
+			],
+			"name": "up"
+		},
+		{
+			"offsets": [
+				1017,
+				420
+			],
+			"loop": true,
+			"fps": 60,
+			"anim": "singLEFT-loop",
+			"indices": [
+				12,
+				13,
+				14
+			],
+			"name": "left"
+		},
+		{
+			"offsets": [
+				1053,
+				381
+			],
+			"loop": true,
+			"fps": 60,
+			"anim": "singDOWN-loop",
+			"indices": [
+				12,
+				13,
+				14
+			],
+			"name": "down"
+		},
+		{
+			"offsets": [
+				1087,
+				367
+			],
+			"loop": true,
+			"fps": 60,
+			"anim": "singRIGHT-loop",
+			"indices": [
+				12,
+				13,
+				14
+			],
+			"name": "right"
+		}
+	],
+	"no_antialiasing": true,
+	"image": "characters/lijiatian-run",
+	"position": [
+		140,
+		460
+	],
+	"healthicon": "Lijiatian",
+	"flip_x": true,
+	"healthbar_colors": [
+		180,
+		239,
+		233
+	],
+	"camera_position": [
+		520,
+		-350
+	],
+	"sing_duration": 4,
+	"scale": 1.25
+}

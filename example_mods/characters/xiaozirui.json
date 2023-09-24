@@ -1,0 +1,78 @@
+{
+	"animations": [
+		{
+			"offsets": [
+				-907,
+				758
+			],
+			"indices": [],
+			"fps": 60,
+			"anim": "idle",
+			"loop": false,
+			"name": "idle"
+		},
+		{
+			"offsets": [
+				-866,
+				778
+			],
+			"indices": [],
+			"fps": 60,
+			"anim": "singUP",
+			"loop": false,
+			"name": "up"
+		},
+		{
+			"offsets": [
+				-812,
+				761
+			],
+			"indices": [],
+			"fps": 60,
+			"anim": "singLEFT",
+			"loop": false,
+			"name": "left"
+		},
+		{
+			"offsets": [
+				-825,
+				757
+			],
+			"indices": [],
+			"fps": 60,
+			"anim": "singDOWN",
+			"loop": false,
+			"name": "down"
+		},
+		{
+			"offsets": [
+				-930,
+				765
+			],
+			"indices": [],
+			"fps": 60,
+			"anim": "singRIGHT",
+			"loop": false,
+			"name": "right"
+		}
+	],
+	"no_antialiasing": true,
+	"image": "characters/xiaozirui",
+	"position": [
+		120,
+		650
+	],
+	"healthicon": "xiaozirui",
+	"flip_x": false,
+	"healthbar_colors": [
+		0,
+		100,
+		255
+	],
+	"camera_position": [
+		700,
+		-360
+	],
+	"sing_duration": 4,
+	"scale": 0.37
+}
