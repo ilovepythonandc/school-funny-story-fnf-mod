@@ -89,7 +89,7 @@ class PlayState extends MusicBeatState
 		['Bruh', 0.6], //From 50% to 59%
 		['Meh', 0.69], //From 60% to 68%
 		['Nice', 0.7], //69%
-		['Good', 0.8], //From 70% to 79%
+		['Good Job', 0.8], //From 70% to 79%
 		['Great', 0.9], //From 80% to 89%
 		['Sick!', 1], //From 90% to 99%
 		['Perfect!!', 1] //The value on this one isn't used actually, since Perfect is always "1"
@@ -1595,10 +1595,6 @@ class PlayState extends MusicBeatState
 
 	override public function update(elapsed:Float)
 	{
-		/*if (FlxG.keys.justPressed.NINE)
-		{
-			iconP1.swapOldIcon();
-		}*/
 		callOnScripts('onUpdate', [elapsed]);
 
 		FlxG.camera.followLerp = 0;
@@ -1647,8 +1643,20 @@ class PlayState extends MusicBeatState
 		if (health > 2) health = 2;
 		iconP1.x = healthBar.barCenter + (150 * iconP1.scale.x - 150) / 2 - iconOffset;
 		iconP2.x = healthBar.barCenter - (150 * iconP2.scale.x) / 2 - iconOffset * 2;
-		iconP1.animation.curAnim.curFrame = (healthBar.percent < 20) ? 1 : 0;
-		iconP2.animation.curAnim.curFrame = (healthBar.percent > 80) ? 1 : 0;
+		iconP1.animation.curAnim.curFrame = 0;
+		iconP2.animation.curAnim.curFrame = 0;
+		if (healthBar.percent < 20){
+			iconP1.animation.curAnim.curFrame = 1;
+		}
+		if (healthBar.percent > 80){
+			iconP1.animation.curAnim.curFrame = 2;
+		}
+		if (healthBar.percent > 80){
+			iconP2.animation.curAnim.curFrame = 1;
+		}
+		if (healthBar.percent < 20){
+			iconP2.animation.curAnim.curFrame = 2;
+		}
 
 		if (controls.justPressed('debug_2') && !endingSong && !inCutscene)
 			openCharacterEditor();

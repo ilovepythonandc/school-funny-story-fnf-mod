@@ -2,7 +2,6 @@ package states;
 
 import flixel.math.FlxRandom;
 import objects.Character;
-import backend.WeekData;
 import backend.Achievements;
 
 import flixel.FlxObject;
@@ -34,7 +33,7 @@ class MainMenuState extends MusicBeatState
 		'options'
 	];
 
-	var magenta:FlxSprite;
+	var blue:FlxSprite;
 	var camFollow:FlxObject;
 
 	private var menuCharacter:Character = null;
@@ -81,15 +80,15 @@ class MainMenuState extends MusicBeatState
 		camFollow = new FlxObject(0, 0, 1, 1);
 		add(camFollow);
 
-		magenta = new FlxSprite(-80).loadGraphic(Paths.image('menuDesat'));
-		magenta.antialiasing = ClientPrefs.data.antialiasing;
-		magenta.scrollFactor.set(0, yScroll);
-		magenta.setGraphicSize(Std.int(magenta.width * 1.175));
-		magenta.updateHitbox();
-		magenta.screenCenter();
-		magenta.visible = false;
-		magenta.color = 0xFFfd719b;
-		add(magenta);
+		blue = new FlxSprite(-80).loadGraphic(Paths.image('menuDesat'));
+		blue.antialiasing = ClientPrefs.data.antialiasing;
+		blue.scrollFactor.set(0, yScroll);
+		blue.setGraphicSize(Std.int(blue.width * 1.175));
+		blue.updateHitbox();
+		blue.screenCenter();
+		blue.visible = false;
+		blue.color = 0xFF0995E6;
+		add(blue);
 		
 		// magenta.scrollFactor.set();
 
@@ -122,7 +121,7 @@ class MainMenuState extends MusicBeatState
 			menuItem.updateHitbox();
 		}
 		var rd:FlxRandom = new FlxRandom();
-		switch (rd.int(0, 2)){
+		switch (rd.int(0, 3)){
 			case 0:
 				menuCharacterName = "xiaozirui";
 				menuCharacterScale = 0.4;
@@ -136,11 +135,17 @@ class MainMenuState extends MusicBeatState
 				menuCharacterOffsetX = 450;
 				menuCharacterOffsetY = 200;
 			case 2:
-				menuCharacterName = "bf-lijiatian";
+				menuCharacterName = "lijiatian";
 				menuCharacterScale = 0.3;
 				menuCharacterIsBf = true;
 				menuCharacterOffsetX = 450;
 				menuCharacterOffsetY = 100;
+			case 3:
+				menuCharacterName = "zenben";
+				menuCharacterScale = 0.3;
+				menuCharacterIsBf = false;
+				menuCharacterOffsetX = 600;
+				menuCharacterOffsetY = 200;
 		}
 		//menuCharacter.x = menuCharacter.x - 100;
 		menuCharacter = new Character(0, 0, menuCharacterName, menuCharacterIsBf);
@@ -240,8 +245,8 @@ class MainMenuState extends MusicBeatState
 					selectedSomethin = true;
 					FlxG.sound.play(Paths.sound('confirmMenu'));
 
-					if(ClientPrefs.data.flashing) FlxFlicker.flicker(magenta, 1.1, 0.15, false);
-					FlxTween.tween(menuCharacter, {alpha: 0}, 0.4, {ease: FlxEase.quadOut,onComplete: function(twn:FlxTween){menuCharacter.kill();}});
+					if(ClientPrefs.data.flashing) FlxFlicker.flicker(blue, 1.1, 0.15, false);
+					FlxTween.tween(menuCharacter, {x: menuCharacter.x+=500}, 0.4, {ease: FlxEase.quadOut,onComplete: function(twn:FlxTween){menuCharacter.kill();}});
 					menuItems.forEach(function(spr:FlxSprite)
 					{
 						if (curSelected != spr.ID)
@@ -262,6 +267,8 @@ class MainMenuState extends MusicBeatState
 									case 'freeplay':
 										MusicBeatState.switchState(new FreeplayState());
 									#if MODS_ALLOWED
+									case 'mods':
+										MusicBeatState.switchState(new ModsMenuState());
 									#end
 									case 'awards':
 										MusicBeatState.switchState(new AchievementsMenuState());
