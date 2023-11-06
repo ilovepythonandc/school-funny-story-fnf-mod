@@ -118,8 +118,7 @@ class MusicBeatState extends FlxUIState
 	}
 
 	public static function switchState(nextState:FlxState = null) {
-		if(nextState == null) 
-			nextState = FlxG.state;
+		if(nextState == null) nextState = FlxG.state;
 		if(nextState == FlxG.state)
 		{
 			resetState();
