@@ -246,7 +246,11 @@ class MainMenuState extends MusicBeatState
 					FlxG.sound.play(Paths.sound('confirmMenu'));
 
 					if(ClientPrefs.data.flashing) FlxFlicker.flicker(blue, 1.1, 0.15, false);
-					FlxTween.tween(menuCharacter, {x: menuCharacter.x+=500}, 0.4, {ease: FlxEase.quadOut,onComplete: function(twn:FlxTween){menuCharacter.kill();}});
+					FlxTween.tween(menuCharacter, {x: menuCharacter.x+500}, 0.4, {
+						onComplete: function (twn:FlxTween) {
+							menuCharacter.kill();
+						}
+					});
 					menuItems.forEach(function(spr:FlxSprite)
 					{
 						if (curSelected != spr.ID)
