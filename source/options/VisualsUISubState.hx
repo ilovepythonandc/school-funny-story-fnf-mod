@@ -172,7 +172,6 @@ class VisualsUISubState extends BaseOptionsMenu
 				notesTween[i] = FlxTween.tween(note, {y: -200}, Math.abs(note.y / (200 + noteY)) / 3, {ease: FlxEase.quadInOut});
 		}
 	}
-
 	var changedMusic:Bool = false;
 	function onChangePauseMusic()
 	{

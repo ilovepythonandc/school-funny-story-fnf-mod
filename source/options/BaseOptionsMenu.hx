@@ -1,5 +1,6 @@
 package options;
 
+import flixel.FlxObject;
 import objects.CheckboxThingie;
 import objects.AttachedText;
 import options.Option;
@@ -24,6 +25,14 @@ class BaseOptionsMenu extends MusicBeatSubstate
 	{
 		super();
 
+		if (title == 'Fullscreen Set'){
+			var text:FlxText;
+			text = new FlxText(0, 0, 0, 'Press F11\nfor fullscreen');
+			text.setFormat(Paths.font("vcr.ttf"), 32, FlxColor.WHITE, CENTER);
+			text.screenCenter();
+			add(text);
+		}
+
 		if(title == null) title = 'Options';
 		if(rpcTitle == null) rpcTitle = 'Options Menu';
 		
@@ -31,7 +40,7 @@ class BaseOptionsMenu extends MusicBeatSubstate
 		DiscordClient.changePresence(rpcTitle, null);
 		#end
 		
-		var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.image('menuDesat'));
+		var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.image('menuOptin'));
 		bg.color = 0xFFea71fd;
 		bg.screenCenter();
 		bg.antialiasing = ClientPrefs.data.antialiasing;
@@ -104,7 +113,7 @@ class BaseOptionsMenu extends MusicBeatSubstate
 	var holdTime:Float = 0;
 	var holdValue:Float = 0;
 	override function update(elapsed:Float)
-	{
+	{	
 		if (controls.UI_UP_P)
 		{
 			changeSelection(-1);
@@ -116,7 +125,7 @@ class BaseOptionsMenu extends MusicBeatSubstate
 
 		if (controls.BACK) {
 			close();
-			FlxG.sound.play(Paths.sound('cancelMenu'));
+			FlxG.sound.play(Paths.sound('cancelMenu'), ClientPrefs.data.soundvolume);
 		}
 
 		if(nextAccept <= 0)
@@ -131,7 +140,7 @@ class BaseOptionsMenu extends MusicBeatSubstate
 			{
 				if(controls.ACCEPT)
 				{
-					FlxG.sound.play(Paths.sound('scrollMenu'));
+					FlxG.sound.play(Paths.sound('scrollMenu'), ClientPrefs.data.soundvolume);
 					curOption.setValue((curOption.getValue() == true) ? false : true);
 					curOption.change();
 					reloadCheckboxes();
@@ -181,7 +190,7 @@ class BaseOptionsMenu extends MusicBeatSubstate
 							}
 							updateTextFrom(curOption);
 							curOption.change();
-							FlxG.sound.play(Paths.sound('scrollMenu'));
+							FlxG.sound.play(Paths.sound('scrollMenu'), ClientPrefs.data.soundvolume);
 						} else if(curOption.type != 'string') {
 							holdValue += curOption.scrollSpeed * elapsed * (controls.UI_LEFT ? -1 : 1);
 							if(holdValue < curOption.minValue) holdValue = curOption.minValue;
@@ -218,7 +227,7 @@ class BaseOptionsMenu extends MusicBeatSubstate
 					updateTextFrom(leOption);
 				}
 				leOption.change();
-				FlxG.sound.play(Paths.sound('cancelMenu'));
+				FlxG.sound.play(Paths.sound('cancelMenu'), ClientPrefs.data.soundvolume);
 				reloadCheckboxes();
 			}
 		}
@@ -240,7 +249,7 @@ class BaseOptionsMenu extends MusicBeatSubstate
 	function clearHold()
 	{
 		if(holdTime > 0.5) {
-			FlxG.sound.play(Paths.sound('scrollMenu'));
+			FlxG.sound.play(Paths.sound('scrollMenu'), ClientPrefs.data.soundvolume);
 		}
 		holdTime = 0;
 	}
@@ -280,7 +289,7 @@ class BaseOptionsMenu extends MusicBeatSubstate
 		descBox.updateHitbox();
 
 		curOption = optionsArray[curSelected]; //shorter lol
-		FlxG.sound.play(Paths.sound('scrollMenu'));
+		FlxG.sound.play(Paths.sound('scrollMenu'), ClientPrefs.data.soundvolume);
 	}
 
 	function reloadCheckboxes() {

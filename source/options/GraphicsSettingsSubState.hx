@@ -56,6 +56,14 @@ class GraphicsSettingsSubState extends BaseOptionsMenu
 		option.maxValue = 240;
 		option.displayFormat = '%v FPS';
 		option.onChange = onChangeFramerate;
+		var option:Option = new Option('BackGround Color:',
+			"BackGround Color",
+			'BGcolor',
+			'string',
+			['ORANGE', 'GREEN', 'BROWN', 'MAGENTA', "BLUE", "WHITE", "CYAN", "PINK", "PURPLE", "RED", "YELLOW", "LIME"]);
+		addOption(option);
+		option.onChange = onChangeBGcolor;
+
 		#end
 
 		super();
@@ -71,6 +79,10 @@ class GraphicsSettingsSubState extends BaseOptionsMenu
 				sprite.antialiasing = ClientPrefs.data.antialiasing;
 			}
 		}
+	}
+	function onChangeBGcolor()
+	{
+		trace(ClientPrefs.data.BGcolor);
 	}
 
 	function onChangeFramerate()

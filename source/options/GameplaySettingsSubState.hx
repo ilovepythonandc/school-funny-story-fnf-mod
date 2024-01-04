@@ -1,5 +1,7 @@
 package options;
 
+import flixel.FlxGame;
+
 class GameplaySettingsSubState extends BaseOptionsMenu
 {
 	public function new()
@@ -37,7 +39,9 @@ class GameplaySettingsSubState extends BaseOptionsMenu
 			'autoPause',
 			'bool');
 		addOption(option);
-		option.onChange = onChangeAutoPause;
+		option.onChange = function(){
+			FlxG.autoPause = ClientPrefs.data.autoPause;
+		}
 
 		var option:Option = new Option('Disable Reset Button',
 			"If checked, pressing Reset won't do anything.",
@@ -55,7 +59,9 @@ class GameplaySettingsSubState extends BaseOptionsMenu
 		option.maxValue = 1;
 		option.changeValue = 0.1;
 		option.decimals = 1;
-		option.onChange = onChangeHitsoundVolume;
+		option.onChange = function(){
+			FlxG.sound.play(Paths.sound('hitsound'), ClientPrefs.data.hitsoundVolume);
+		}
 
 		var option:Option = new Option('Rating Offset',
 			'Changes how late/early you have to hit for a "Sick!"\nHigher values mean you have to hit later.',
@@ -66,6 +72,7 @@ class GameplaySettingsSubState extends BaseOptionsMenu
 		option.minValue = -30;
 		option.maxValue = 30;
 		addOption(option);
+		
 
 		var option:Option = new Option('Sick! Hit Window',
 			'Changes the amount of time you have\nfor hitting a "Sick!" in milliseconds.',
@@ -107,16 +114,27 @@ class GameplaySettingsSubState extends BaseOptionsMenu
 		option.changeValue = 0.1;
 		addOption(option);
 
+		var option:Option = new Option('sound volume',
+		'change sound volume!',
+		'soundvolume',
+		'int');
+		option.minValue = 0;
+		option.maxValue = 100;
+		option.onChange = function() {
+			FlxG.sound.play(Paths.sound("hitsound"), ClientPrefs.data.soundvolume/100);
+		}
+		addOption(option);
+
+		var option:Option = new Option('music volume',
+		'change music volume!',
+		'musicvolume',
+		'int');
+		option.minValue = 0;
+		option.maxValue = 100;
+		option.onChange = function(){
+			FlxG.sound.music.volume = ClientPrefs.data.musicvolume/100;
+		}
+		addOption(option);
 		super();
-	}
-
-	function onChangeHitsoundVolume()
-	{
-		FlxG.sound.play(Paths.sound('hitsound'), ClientPrefs.data.hitsoundVolume);
-	}
-
-	function onChangeAutoPause()
-	{
-		FlxG.autoPause = ClientPrefs.data.autoPause;
 	}
 }
