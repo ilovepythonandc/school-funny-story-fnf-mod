@@ -1,5 +1,6 @@
 package states;
 
+import lime.tools.Icon;
 import backend.WeekData;
 import backend.Highscore;
 import backend.Song;
@@ -20,6 +21,7 @@ import sys.FileSystem;
 class FreeplayState extends MusicBeatState
 {
 	var songs:Array<SongMetadata> = [];
+	var icon:HealthIcon;
 
 	var selector:FlxText;
 	private static var curSelected:Int = 0;
@@ -35,7 +37,9 @@ class FreeplayState extends MusicBeatState
 	var intendedScore:Int = 0;
 	var intendedRating:Float = 0;
 
-	private var grpSongs:FlxTypedGroup<Alphabet>;
+	var selectedSongText:FlxText;
+
+	//private var grpSongs:FlxTypedGroup<Alphabet>;
 	private var curPlaying:Bool = false;
 
 	private var iconArray:Array<HealthIcon> = [];
@@ -87,35 +91,24 @@ class FreeplayState extends MusicBeatState
 		}
 		Mods.loadTopMod();
 
-		bg = new FlxSprite().loadGraphic(Paths.image('menuDesat'));
+		bg = new FlxSprite().loadGraphic(Paths.image('menuCDroom'));
 		bg.antialiasing = ClientPrefs.data.antialiasing;
 		add(bg);
 		bg.screenCenter();
 
-		grpSongs = new FlxTypedGroup<Alphabet>();
-		add(grpSongs);
-
 		for (i in 0...songs.length)
 		{
-			var songText:Alphabet = new Alphabet(90, 320, songs[i].songName, true);
-			songText.targetY = i;
-			grpSongs.add(songText);
 
-			songText.scaleX = Math.min(1, 980 / songText.width);
-			songText.snapToPosition();
 
 			Mods.currentModDirectory = songs[i].folder;
 			var icon:HealthIcon = new HealthIcon(songs[i].songCharacter);
-			icon.sprTracker = songText;
 
 			
 			// too laggy with a lot of songs, so i had to recode the logic for it
-			songText.visible = songText.active = songText.isMenuItem = false;
 			icon.visible = icon.active = false;
 
 			// using a FlxGroup is too much fuss!
 			iconArray.push(icon);
-			add(icon);
 
 			// songText.x += 40;
 			// DONT PUT X IN THE FIRST PARAMETER OF new ALPHABET() !!
@@ -151,6 +144,8 @@ class FreeplayState extends MusicBeatState
 		bg.color = songs[curSelected].color;
 		intendedColor = bg.color;
 		lerpSelected = curSelected;
+
+		selectedSongText = new FlxText(0, 0, 1, songs[0].songName);
 
 		curDifficulty = Math.round(Math.max(0, Difficulty.defaultList.indexOf(lastDifficultyName)));
 		
@@ -215,17 +210,12 @@ class FreeplayState extends MusicBeatState
 	var holdTime:Float = 0;
 	override function update(elapsed:Float)
 	{
-		if (FlxG.sound.music.volume < 0.7)
+		if (FlxG.sound.music.volume < ClientPrefs.data.musicvolume)
 		{
 			FlxG.sound.music.volume += 0.5 * FlxG.elapsed;
 		}
 		var min:Int = Math.round(Math.max(0, Math.min(songs.length, lerpSelected - _drawDistance)));
 		var max:Int = Math.round(Math.max(0, Math.min(songs.length, lerpSelected + _drawDistance)));
-		for (i in min...max){
-			var icon:HealthIcon = iconArray[i];
-			icon.update(0.5);
-			icon.updateHitbox();
-		}
 		lerpScore = Math.floor(FlxMath.lerp(lerpScore, intendedScore, FlxMath.bound(elapsed * 24, 0, 1)));
 		lerpRating = FlxMath.lerp(lerpRating, intendedRating, FlxMath.bound(elapsed * 12, 0, 1));
 
@@ -263,18 +253,18 @@ class FreeplayState extends MusicBeatState
 				changeSelection();
 				holdTime = 0;	
 			}
-			if (controls.UI_UP_P)
+			if (controls.UI_LEFT_P)
 			{
 				changeSelection(-shiftMult);
 				holdTime = 0;
 			}
-			if (controls.UI_DOWN_P)
+			if (controls.UI_RIGHT_P)
 			{
 				changeSelection(shiftMult);
 				holdTime = 0;
 			}
 
-			if(controls.UI_DOWN || controls.UI_UP)
+			if(controls.UI_LEFT || controls.UI_RIGHT)
 			{
 				var checkLastHold:Int = Math.floor((holdTime - 0.5) * 10);
 				holdTime += elapsed;
@@ -284,19 +274,14 @@ class FreeplayState extends MusicBeatState
 					changeSelection((checkNewHold - checkLastHold) * (controls.UI_UP ? -shiftMult : shiftMult));
 			}
 
-			if(FlxG.mouse.wheel != 0)
-			{
-				FlxG.sound.play(Paths.sound('scrollMenu'), 0.2);
-				changeSelection(-shiftMult * FlxG.mouse.wheel, false);
-			}
 		}
 
-		if (controls.UI_LEFT_P)
+		if (controls.UI_UP_P)
 		{
 			changeDiff(-1);
 			_updateSongLastDifficulty();
 		}
-		else if (controls.UI_RIGHT_P)
+		else if (controls.UI_DOWN_P)
 		{
 			changeDiff(1);
 			_updateSongLastDifficulty();
@@ -308,7 +293,7 @@ class FreeplayState extends MusicBeatState
 			if(colorTween != null) {
 				colorTween.cancel();
 			}
-			FlxG.sound.play(Paths.sound('cancelMenu'));
+			FlxG.sound.play(Paths.sound('cancelMenu'), ClientPrefs.data.soundvolume/100);
 			MusicBeatState.switchState(new MainMenuState());
 		}
 
@@ -380,7 +365,7 @@ class FreeplayState extends MusicBeatState
 				missingText.screenCenter(Y);
 				missingText.visible = true;
 				missingTextBG.visible = true;
-				FlxG.sound.play(Paths.sound('cancelMenu'));
+				FlxG.sound.play(Paths.sound('cancelMenu'), ClientPrefs.data.soundvolume/100);
 
 				updateTexts(elapsed);
 				super.update(elapsed);
@@ -399,7 +384,7 @@ class FreeplayState extends MusicBeatState
 		{
 			persistentUpdate = false;
 			openSubState(new ResetScoreSubState(songs[curSelected].songName, curDifficulty, songs[curSelected].songCharacter));
-			FlxG.sound.play(Paths.sound('scrollMenu'));
+			FlxG.sound.play(Paths.sound('scrollMenu'), ClientPrefs.data.soundvolume/100);
 		}
 
 		updateTexts(elapsed);
@@ -441,11 +426,35 @@ class FreeplayState extends MusicBeatState
 
 	function changeSelection(change:Int = 0, playSound:Bool = true)
 	{
+
 		_updateSongLastDifficulty();
-		if(playSound) FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
+		if(playSound) FlxG.sound.play(Paths.sound('scrollMenu'), ClientPrefs.data.soundvolume/100);
 
 		var lastList:Array<String> = Difficulty.list;
-		curSelected += change;
+		if (change>0){
+			if (curSelected < songs.length-1){
+				curSelected += change;
+			}
+		}
+		else{
+			if (curSelected > 0){
+				curSelected += change;
+			}
+		}
+		remove(selectedSongText);
+		selectedSongText = new FlxText(260, 200, 0, "< "+songs[curSelected].songName+" >");
+		selectedSongText.setFormat(Paths.font("vcr.ttf"), 32, FlxColor.WHITE, CENTER);
+		selectedSongText.x-=selectedSongText.width/2;
+		selectedSongText.visible = true;
+		add(selectedSongText);
+
+		remove(icon);
+		icon = iconArray[curSelected];
+		icon.x = 270-icon.width/2;
+		icon.y = 210;
+		icon.setGraphicSize(Math.round(icon.width*0.8), Math.round(icon.height*0.8));
+		icon.visible = true;
+		add(icon);
 
 		if (curSelected < 0)
 			curSelected = songs.length - 1;
@@ -475,14 +484,6 @@ class FreeplayState extends MusicBeatState
 		}
 
 		iconArray[curSelected].alpha = 1;
-
-		for (item in grpSongs.members)
-		{
-			bullShit++;
-			item.alpha = 0.6;
-			if (item.targetY == curSelected)
-				item.alpha = 1;
-		}
 		
 		Mods.currentModDirectory = songs[curSelected].folder;
 		PlayState.storyWeek = songs[curSelected].week;
@@ -521,26 +522,10 @@ class FreeplayState extends MusicBeatState
 	public function updateTexts(elapsed:Float = 0.0)
 	{
 		lerpSelected = FlxMath.lerp(lerpSelected, curSelected, FlxMath.bound(elapsed * 9.6, 0, 1));
-		for (i in _lastVisibles)
-		{
-			grpSongs.members[i].visible = grpSongs.members[i].active = false;
-			iconArray[i].visible = iconArray[i].active = false;
-		}
 		_lastVisibles = [];
 
 		var min:Int = Math.round(Math.max(0, Math.min(songs.length, lerpSelected - _drawDistance)));
 		var max:Int = Math.round(Math.max(0, Math.min(songs.length, lerpSelected + _drawDistance)));
-		for (i in min...max)
-		{
-			var item:Alphabet = grpSongs.members[i];
-			item.visible = item.active = true;
-			item.y = ((item.targetY - lerpSelected) * 1.3 * item.distancePerItem.y) + item.startPosition.y;
-			item.x = ((FlxG.width-item.width)/2)-50;
-
-			var icon:HealthIcon = iconArray[i];
-			icon.visible = icon.active = true;
-			_lastVisibles.push(i);
-		}
 	}
 }
 

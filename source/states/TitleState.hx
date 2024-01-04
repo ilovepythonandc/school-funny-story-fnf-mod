@@ -77,7 +77,8 @@ class TitleState extends MusicBeatState
 	public static var updateVersion:String = '';
 
 	override public function create():Void
-	{
+	{	
+
 		Paths.clearStoredMemory();
 		Paths.clearUnusedMemory();
 
@@ -377,7 +378,7 @@ class TitleState extends MusicBeatState
 
 
 	override function update(elapsed:Float)
-	{
+	{	
 		if (FlxG.sound.music != null)
 			Conductor.songPosition = FlxG.sound.music.time;
 		// FlxG.watch.addQuick('amp', FlxG.sound.music.amplitude);
@@ -436,7 +437,7 @@ class TitleState extends MusicBeatState
 				if(titleText != null) titleText.animation.play('press');
 
 				FlxG.camera.flash(ClientPrefs.data.flashing ? FlxColor.WHITE : 0x4CFFFFFF, 1);
-				FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);
+				FlxG.sound.play(Paths.sound('confirmMenu'), ClientPrefs.data.soundvolume/100);
 
 				transitioning = true;
 				// FlxG.sound.music.stop();
@@ -574,9 +575,22 @@ class TitleState extends MusicBeatState
 			switch (sickBeats)
 			{
 				case 1:
-					//FlxG.sound.music.stop();
-					FlxG.sound.playMusic(Paths.music('freakyMenu'), 0);
-					FlxG.sound.music.fadeIn(4, 0, 0.7);
+					var leDate = Date.now();
+					trace(leDate.getMonth());
+					trace(leDate.getDate());
+					if (leDate.getMonth() == 11 && leDate.getDate() == 25){
+						FlxG.sound.playMusic(Paths.music('freakyMenu_Christmas'), 0);
+					}
+					else{
+						if(leDate.getMonth() == 9 && leDate.getDate() == 1){
+							FlxG.sound.playMusic(Paths.music('freakyMenu_Halloween'), 0);
+						}
+						else{
+							//FlxG.sound.music.stop();
+							FlxG.sound.playMusic(Paths.music('freakyMenu'), 0);
+						}
+					}
+					FlxG.sound.music.fadeIn(4, 0, ClientPrefs.data.musicvolume/100);
 				case 2:
 					#if PSYCH_WATERMARKS
 					createCoolText(['Psych Engine by'], 40);

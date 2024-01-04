@@ -1,5 +1,6 @@
 package states;
 
+import haxe.io.Path;
 import backend.WeekData;
 import backend.Highscore;
 import backend.Song;
@@ -24,6 +25,10 @@ class StoryMenuState extends MusicBeatState
 
 	var txtWeekTitle:FlxText;
 	var bgSprite:FlxSprite;
+
+	private var TweenDo:Bool = false;
+	private var LeftImage:FlxSprite = null;
+	private var RightImage:FlxSprite = null;
 
 	private static var curWeek:Int = 0;
 
@@ -71,8 +76,8 @@ class StoryMenuState extends MusicBeatState
 		grpWeekText = new FlxTypedGroup<MenuItem>();
 		add(grpWeekText);
 
-		var blackBarThingie:FlxSprite = new FlxSprite().makeGraphic(FlxG.width, 56, FlxColor.BLACK);
-		add(blackBarThingie);
+		var blueBarThingie:FlxSprite = new FlxSprite().makeGraphic(FlxG.width, 56, 0x096477);
+		add(blueBarThingie);
 
 		grpWeekCharacters = new FlxTypedGroup<MenuCharacter>();
 
@@ -166,7 +171,18 @@ class StoryMenuState extends MusicBeatState
 		txtTracklist = new FlxText(FlxG.width * 0.05, tracksSprite.y + 60, 0, "", 32);
 		txtTracklist.alignment = CENTER;
 		txtTracklist.font = rankText.font;
-		txtTracklist.color = 0xFF33ffff;
+		if (ClientPrefs.data.BGcolor=="ORANGE"){txtTracklist.color = tracksSprite.color = 0xFFFFA500;}
+		if (ClientPrefs.data.BGcolor=="GREEN"){txtTracklist.color = tracksSprite.color = 0xFF008000;}
+		if (ClientPrefs.data.BGcolor=="BROWN"){txtTracklist.color = tracksSprite.color = 0xFF8B4513;}
+		if (ClientPrefs.data.BGcolor=="MAGENTA"){txtTracklist.color = tracksSprite.color = 0xFFFF00FF;}
+		if (ClientPrefs.data.BGcolor=="BLUE"){txtTracklist.color = tracksSprite.color = 0xFF0000FF;}
+		if (ClientPrefs.data.BGcolor=="WHITE"){txtTracklist.color = tracksSprite.color = 0xFFFFFFFF;}
+		if (ClientPrefs.data.BGcolor=="CYAN"){txtTracklist.color = tracksSprite.color = 0xFF00FFFF;}
+		if (ClientPrefs.data.BGcolor=="PINK"){txtTracklist.color = tracksSprite.color = 0xFFFFC0CB;}
+		if (ClientPrefs.data.BGcolor=="PURPLE"){txtTracklist.color = tracksSprite.color = 0xFF800080;}
+		if (ClientPrefs.data.BGcolor=="RED"){txtTracklist.color = tracksSprite.color = 0xFFFF0000;}
+		if (ClientPrefs.data.BGcolor=="YELLOW"){txtTracklist.color = tracksSprite.color = 0xFFFFFF00;}
+		if (ClientPrefs.data.BGcolor=="LIME"){txtTracklist.color = tracksSprite.color = 0xFF00FF00;}
 		add(txtTracklist);
 		// add(rankText);
 		add(scoreText);
@@ -201,13 +217,13 @@ class StoryMenuState extends MusicBeatState
 			if (upP)
 			{
 				changeWeek(-1);
-				FlxG.sound.play(Paths.sound('scrollMenu'));
+				FlxG.sound.play(Paths.sound('scrollMenu'), ClientPrefs.data.soundvolume/100);
 			}
 
 			if (downP)
 			{
 				changeWeek(1);
-				FlxG.sound.play(Paths.sound('scrollMenu'));
+				FlxG.sound.play(Paths.sound('scrollMenu'), ClientPrefs.data.soundvolume/100);
 			}
 
 			if(FlxG.mouse.wheel != 0)
@@ -306,7 +322,36 @@ class StoryMenuState extends MusicBeatState
 			
 			if (stopspamming == false)
 			{
-				FlxG.sound.play(Paths.sound('confirmMenu'));
+				if (!TweenDo){
+					trace("week name: "+loadedWeeks[curWeek].weekName);
+					var weekName:String = loadedWeeks[curWeek].weekName;
+
+
+					if (weekName == "weekschool"){
+						LeftImage = new FlxSprite(-257, FlxG.height-708);
+						RightImage = new FlxSprite(1286, FlxG.height-692);
+						LeftImage.loadGraphic(Paths.image("StoryMenuCharacters/lijiatian"));
+						RightImage.loadGraphic(Paths.image("StoryMenuCharacters/xiaozirui"));
+
+						FlxTween.tween(LeftImage, {x: LeftImage.x+257}, 0.4, {ease: FlxEase.quadOut});
+						FlxTween.tween(RightImage, {x: RightImage.x-234}, 0.4, {ease: FlxEase.quadOut});
+					}
+					else if (weekName == "weekme"){
+						LeftImage = new FlxSprite(-501, FlxG.height-688);
+						RightImage = new FlxSprite(1286, FlxG.height-549);
+						LeftImage.loadGraphic(Paths.image("StoryMenuCharacters/senben"));
+						RightImage.loadGraphic(Paths.image("StoryMenuCharacters/bf"));
+
+						FlxTween.tween(LeftImage, {x: LeftImage.x+501}, 0.4, {ease: FlxEase.quadOut});
+						FlxTween.tween(RightImage, {x: RightImage.x-555}, 0.4, {ease: FlxEase.quadOut});
+					}
+					add(LeftImage);
+					add(RightImage);
+					TweenDo=true;
+				}
+				LeftImage.updateHitbox();
+				RightImage.updateHitbox();
+				FlxG.sound.play(Paths.sound('confirmMenu'), ClientPrefs.data.soundvolume/100);
 
 				grpWeekText.members[curWeek].startFlashing();
 
@@ -330,7 +375,7 @@ class StoryMenuState extends MusicBeatState
 			DiscordClient.loadModRPC();
 			#end
 		} else {
-			FlxG.sound.play(Paths.sound('cancelMenu'));
+			FlxG.sound.play(Paths.sound('cancelMenu'), ClientPrefs.data.soundvolume/100);
 		}
 	}
 

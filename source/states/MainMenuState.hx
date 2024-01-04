@@ -1,5 +1,9 @@
 package states;
 
+import haxe.macro.Expr.Case;
+import flixel.addons.display.shapes.FlxShape;
+import flixel.addons.display.shapes.FlxShapeSquareDonut;
+import flixel.graphics.FlxGraphic;
 import flixel.math.FlxRandom;
 import objects.Character;
 import backend.Achievements;
@@ -33,7 +37,7 @@ class MainMenuState extends MusicBeatState
 		'options'
 	];
 
-	var blue:FlxSprite;
+	var bgflicker:FlxSprite;
 	var camFollow:FlxObject;
 
 	private var menuCharacter:Character = null;
@@ -42,6 +46,7 @@ class MainMenuState extends MusicBeatState
 	private var menuCharacterScale:Float = 0;
 	private var menuCharacterOffsetX:Int = 0;
 	private var menuCharacterOffsetY:Int = 0;
+
 
 	override function create()
 	{
@@ -69,6 +74,7 @@ class MainMenuState extends MusicBeatState
 		persistentUpdate = persistentDraw = true;
 
 		var yScroll:Float = Math.max(0.25 - (0.05 * (optionShit.length - 4)), 0.1);
+
 		var bg:FlxSprite = new FlxSprite(-80).loadGraphic(Paths.image('menuBG'));
 		bg.antialiasing = ClientPrefs.data.antialiasing;
 		bg.scrollFactor.set(0, yScroll);
@@ -80,15 +86,30 @@ class MainMenuState extends MusicBeatState
 		camFollow = new FlxObject(0, 0, 1, 1);
 		add(camFollow);
 
-		blue = new FlxSprite(-80).loadGraphic(Paths.image('menuDesat'));
-		blue.antialiasing = ClientPrefs.data.antialiasing;
-		blue.scrollFactor.set(0, yScroll);
-		blue.setGraphicSize(Std.int(blue.width * 1.175));
-		blue.updateHitbox();
-		blue.screenCenter();
-		blue.visible = false;
-		blue.color = 0xFF0995E6;
-		add(blue);
+		bgflicker = new FlxSprite(-80).loadGraphic(Paths.image('menuDesat'));
+		bgflicker.antialiasing = ClientPrefs.data.antialiasing;
+		bgflicker.scrollFactor.set(0, yScroll);
+		bgflicker.setGraphicSize(Std.int(bgflicker.width * 1.175));
+		bgflicker.updateHitbox();
+		bgflicker.screenCenter();
+		bgflicker.visible = false;
+		trace(ClientPrefs.data.BGcolor);
+		//'ORANGE', 'GREEN', 'BROWN', 'MAGENTA', "BLUE", "WHITE", "CYAN", "PINK", "PURPLE", "RED", "YELLOW", "LIME"
+		switch(ClientPrefs.data.BGcolor){
+			case "ORANGE" :bgflicker.color = 0xFFFFA500;
+			case "GREEN"  :bgflicker.color = 0xFF008000;
+			case "BROWN"  :bgflicker.color = 0xFF8B4513;
+			case "MAGENTA":bgflicker.color = 0xFFFF00FF;
+			case "BLUE"   :bgflicker.color = 0xFF0000FF;
+			case "WHITE"  :bgflicker.color = 0xFFFFFFFF;
+			case "CYAN"   :bgflicker.color = 0xFF00FFFF;
+			case "PINK"   :bgflicker.color = 0xFFFFC0CB;
+			case "PURPLE" :bgflicker.color = 0xFF800080;
+			case "RED"    :bgflicker.color = 0xFFFF0000;
+			case "YELLOW" :bgflicker.color = 0xFFFFFF00;
+			case "LIME"   :bgflicker.color = 0xFF00FF00;
+		}
+		add(bgflicker);
 		
 		// magenta.scrollFactor.set();
 
@@ -165,7 +186,7 @@ class MainMenuState extends MusicBeatState
 		versionShit.scrollFactor.set();
 		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(versionShit);
-		var versionShit:FlxText = new FlxText(12, FlxG.height - 64, 0, "School Funny Story v1.0.0", 12);
+		var versionShit:FlxText = new FlxText(12, FlxG.height - 64, 0, "School Funny Story v0.6.0", 12);
 		versionShit.scrollFactor.set();
 		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(versionShit);
@@ -194,10 +215,12 @@ class MainMenuState extends MusicBeatState
 	// Unlocks "Freaky on a Friday Night" achievement
 	function giveAchievement() {
 		add(new AchievementPopup('friday_night_play', camAchievement));
-		FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);
+		FlxG.sound.play(Paths.sound('confirmMenu'), ClientPrefs.data.soundvolume/100);
 		trace('Giving achievement "friday_night_play"');
 	}
 	#end
+
+
 
 	var selectedSomethin:Bool = false;
 
@@ -217,20 +240,20 @@ class MainMenuState extends MusicBeatState
 		{
 			if (controls.UI_UP_P)
 			{
-				FlxG.sound.play(Paths.sound('scrollMenu'));
+				FlxG.sound.play(Paths.sound('scrollMenu'), ClientPrefs.data.soundvolume/100);
 				changeItem(-1);
 			}
 
 			if (controls.UI_DOWN_P)
 			{
-				FlxG.sound.play(Paths.sound('scrollMenu'));
+				FlxG.sound.play(Paths.sound('scrollMenu'), ClientPrefs.data.soundvolume/100);
 				changeItem(1);
 			}
 
 			if (controls.BACK)
 			{
 				selectedSomethin = true;
-				FlxG.sound.play(Paths.sound('cancelMenu'));
+				FlxG.sound.play(Paths.sound('cancelMenu'), ClientPrefs.data.soundvolume/100);
 				MusicBeatState.switchState(new TitleState());
 			}
 
@@ -243,9 +266,9 @@ class MainMenuState extends MusicBeatState
 				else
 				{
 					selectedSomethin = true;
-					FlxG.sound.play(Paths.sound('confirmMenu'));
+					FlxG.sound.play(Paths.sound('confirmMenu'), ClientPrefs.data.soundvolume/100);
 
-					if(ClientPrefs.data.flashing) FlxFlicker.flicker(blue, 1.1, 0.15, false);
+					if(ClientPrefs.data.flashing) FlxFlicker.flicker(bgflicker, 1.1, 0.15, false);
 					FlxTween.tween(menuCharacter, {x: menuCharacter.x+500}, 0.4, {
 						onComplete: function (twn:FlxTween) {
 							menuCharacter.kill();
