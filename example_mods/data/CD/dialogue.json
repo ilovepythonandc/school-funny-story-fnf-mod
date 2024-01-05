@@ -1,100 +1,204 @@
 {
 	"dialogue": [
 		{
-			"expression": "confused",
-			"text": "Where am I?",
-			"boxState": "normal",
-			"portrait": "bf",
+			"sound": "",
 			"speed": 0.05,
-			"sound": "bf_talk"
-		},
-		{
-			"expression": "pissed",
-			"text": "HEY!\\nWho are you!!\\nWhy are you in my CD room!!!",
-			"boxState": "normal",
 			"portrait": "me",
-			"speed": 0.035,
-			"sound": "me_talk"
-		},
-		{
-			"expression": "shocked",
-			"text": "OH YEAH GUYS ,I I I I Y EA,NO,OH FUCK OH NO,YEA OH I ,DO ,NO. OH HELL,NO NOT ME LETTTTT OHHHH YEA IT IT IT YES! NO FUCK NO!!!",
-			"boxState": "angry",
-			"portrait": "bf",
-			"speed": 0.005,
-			"sound": "bf_talk"
-		},
-		{
+			"boxState": "normal",
 			"expression": "confused",
-			"text": "Hey,guy\\ncalm down.",
+			"text": "why are you here?"
+		},
+		{
+			"sound": "",
+			"speed": 0.05,
+			"portrait": "bf",
 			"boxState": "normal",
+			"expression": "confused",
+			"text": "i don't know."
+		},
+		{
+			"sound": "",
+			"speed": 0.05,
 			"portrait": "me",
-			"speed": 0.03,
-			"sound": "me_talk"
+			"boxState": "normal",
+			"expression": "confused",
+			"text": "didn't you run into my cd room !?"
 		},
 		{
-			"expression": "talk",
-			"text": "Oh,yeah maybe I need to calm down first.",
-			"boxState": "normal",
-			"sound": "BF_talk",
+			"sound": "",
 			"speed": 0.05,
-			"portrait": "bf"
+			"portrait": "bf",
+			"boxState": "normal",
+			"expression": "confused",
+			"text": "i don't know."
 		},
 		{
-			"expression": "talk",
-			"text": "Did you just say I am in your CD-room?",
-			"boxState": "normal",
-			"sound": "bf_talk",
+			"sound": "",
 			"speed": 0.05,
-			"portrait": "bf"
-		},
-		{
+			"portrait": "me",
+			"boxState": "normal",
 			"expression": "talk",
-			"text": "Yes.\\nNow you are in my CD-room.",
-			"boxState": "normal",
-			"sound": "me_talk",
-			"speed": 0.05,
-			"portrait": "me"
+			"text": "ok"
 		},
 		{
+			"sound": "",
+			"speed": 0.05,
+			"portrait": "bf",
+			"boxState": "normal",
 			"expression": "talk",
-			"text": "How did you get the key?",
-			"boxState": "normal",
-			"sound": "me_talk",
+			"text": "i fell into a hole and then i get to here/"
+		},
+		{
+			"sound": "",
 			"speed": 0.05,
-			"portrait": "me"
-		},
-		{
-			"expression": "talk",
-			"text": "I don't know,I was playing with my girlfriend and I fell in a big hole and then I woke up here.",
+			"portrait": "bf",
 			"boxState": "normal",
-			"sound": "bf_talk",
-			"speed": 0.05,
-			"portrait": "bf"
-		},
-		{
-			"expression": "excited",
-			"text": "........",
-			"boxState": "normal",
-			"sound": "me_talk",
-			"speed": 0.5,
-			"portrait": "me"
-		},
-		{
 			"expression": "pissed",
-			"text": "Hey guy,do you want a rap battle with me?",
-			"boxState": "normal",
-			"sound": "bf_talk",
-			"speed": 0.05,
-			"portrait": "bf"
+			"text": "that's cool!isn't it?"
 		},
 		{
-			"expression": "excited",
-			"text": "Sure!",
-			"boxState": "normal",
-			"sound": "me_talk",
+			"sound": "",
 			"speed": 0.05,
-			"portrait": "me"
+			"portrait": "me",
+			"boxState": "normal",
+			"expression": "excited",
+			"text": "so funny"
+		},
+		{
+			"sound": "",
+			"speed": 0.05,
+			"portrait": "me",
+			"boxState": "normal",
+			"expression": "excited",
+			"text": "what a good joke!"
+		},
+		{
+			"sound": "",
+			"speed": 0.05,
+			"portrait": "bf",
+			"boxState": "normal",
+			"expression": "talk",
+			"text": "heh"
+		},
+		{
+			"sound": "",
+			"speed": 0.05,
+			"portrait": "bf",
+			"boxState": "normal",
+			"expression": "talk",
+			"text": "you don't belive it."
+		},
+		{
+			"sound": "",
+			"speed": 0.05,
+			"portrait": "bf",
+			"boxState": "normal",
+			"expression": "talk",
+			"text": "don't you?"
+		},
+		{
+			"sound": "",
+			"speed": 0.05,
+			"portrait": "me",
+			"boxState": "normal",
+			"expression": "excited",
+			"text": "yes i am"
+		},
+		{
+			"sound": "",
+			"speed": 0.05,
+			"portrait": "bf",
+			"boxState": "normal",
+			"expression": "pissed",
+			"text": "hey!\\nit's real!!"
+		},
+		{
+			"sound": "",
+			"speed": 0.05,
+			"portrait": "me",
+			"boxState": "normal",
+			"expression": "talk",
+			"text": "How can you prove it?"
+		},
+		{
+			"sound": "",
+			"speed": 0.1,
+			"portrait": "bf",
+			"boxState": "normal",
+			"expression": "talk",
+			"text": "just wait."
+		},
+		{
+			"sound": "",
+			"speed": 0.05,
+			"portrait": "bf",
+			"boxState": "normal",
+			"expression": "talk",
+			"text": "somebody will come"
+		},
+		{
+			"sound": "",
+			"speed": 0.05,
+			"portrait": "me",
+			"boxState": "normal",
+			"expression": "talk",
+			"text": "ok"
+		},
+		{
+			"sound": "",
+			"speed": 0.05,
+			"portrait": "me",
+			"boxState": "normal",
+			"expression": "talk",
+			"text": "so ehh."
+		},
+		{
+			"sound": "",
+			"speed": 0.05,
+			"portrait": "me",
+			"boxState": "normal",
+			"expression": "excited",
+			"text": "what's now?"
+		},
+		{
+			"sound": "",
+			"speed": 0.05,
+			"portrait": "bf",
+			"boxState": "normal",
+			"expression": "talk",
+			"text": ""
+		},
+		{
+			"sound": "",
+			"speed": 0.05,
+			"portrait": "bf",
+			"boxState": "normal",
+			"expression": "talk",
+			"text": "let's have a battle."
+		},
+		{
+			"sound": "",
+			"speed": 0.05,
+			"portrait": "me",
+			"boxState": "normal",
+			"expression": "talk",
+			"text": "what battle?"
+		},
+		{
+			"sound": "",
+			"speed": 0.05,
+			"portrait": "bf",
+			"boxState": "normal",
+			"expression": "talk",
+			"text": "rap battle"
+		},
+		{
+			"sound": "",
+			"speed": 0.05,
+			"portrait": "me",
+			"boxState": "normal",
+			"expression": "talk",
+			"text": "ok"
 		}
 	]
 }

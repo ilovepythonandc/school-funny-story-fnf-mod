@@ -1,0 +1,36 @@
+{
+	"dialogue": [
+		{
+			"sound": "",
+			"speed": 0.05,
+			"portrait": "lijiatian",
+			"boxState": "normal",
+			"expression": "talk",
+			"text": "NEVER LET YOU GO!"
+		},
+		{
+			"sound": "",
+			"speed": 0.05,
+			"portrait": "xiaozirui",
+			"boxState": "normal",
+			"expression": "excited",
+			"text": "You can't"
+		},
+		{
+			"sound": "",
+			"speed": 0.05,
+			"portrait": "xiaozirui",
+			"boxState": "normal",
+			"expression": "naughty",
+			"text": "lolololololol"
+		},
+		{
+			"sound": "",
+			"speed": 0.05,
+			"portrait": "lijiatian",
+			"boxState": "normal",
+			"expression": "what",
+			"text": ""
+		}
+	]
+}
