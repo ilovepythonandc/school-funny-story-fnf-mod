@@ -1,0 +1,45 @@
+{
+	"storyName": "vs. school things",
+	"difficulties": "hard",
+	"weekBackground": "classroom",
+	"hideFreeplay": false,
+	"weekBefore": "",
+	"startUnlocked": true,
+	"songs": [
+		[
+			"quarrel",
+			"lijiatian",
+			[
+				44,
+				44,
+				207
+			]
+		],
+		[
+			"chlorophyll",
+			"lijiatian",
+			[
+				44,
+				44,
+				207
+			]
+		],
+		[
+			"lesson",
+			"lijiatian",
+			[
+				44,
+				44,
+				207
+			]
+		]
+	],
+	"weekCharacters": [
+		"lijiatian",
+		"",
+		"xiaozirui"
+	],
+	"hideStoryMode": false,
+	"weekName": "weekschool",
+	"hiddenUntilUnlocked": true
+}

@@ -1,0 +1,59 @@
+{
+	"storyName": "vs. me",
+	"difficulties": "hard",
+	"hideFreeplay": false,
+	"weekBackground": "CD-room",
+	"weekBefore": "weekschool",
+	"freeplayColor": [
+		146,
+		113,
+		253
+	],
+	"startUnlocked": true,
+	"hideStoryMode": false,
+	"songs": [
+		[
+			"CD",
+			"middle-me",
+			[
+				146,
+				113,
+				253
+			]
+		],
+		[
+			"free fresh",
+			"middle-me",
+			[
+				146,
+				113,
+				253
+			]
+		],
+		[
+			"stars",
+			"middle-me",
+			[
+				146,
+				113,
+				253
+			]
+		],
+		[
+			"speed",
+			"middle-me",
+			[
+				146,
+				113,
+				253
+			]
+		]
+	],
+	"weekCharacters": [
+		"me",
+		"",
+		"bf"
+	],
+	"hiddenUntilUnlocked": false,
+	"weekName": "weekme"
+}
